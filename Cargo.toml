@@ -25,13 +25,15 @@ pairing = { version = "0.23", optional = true }
 rand_core = { version = "0.6", default-features = false }
 subtle = { version = "2.2.1", default-features = false }
 zeroize = { version = "1.4", optional = true, default-features = false }
-hex = { version = "0.4", optional = true, default-features = false, features = ["alloc"] }
+hex = { version = "0.4", optional = true, default-features = false, features = [
+    "alloc",
+] }
 
-[target.'cfg(all(target_os = "zkvm", target_vendor = "succinct"))'.dependencies]
-sp1-lib = { version = "4.0.0", default-features = false }
+# [target.'cfg(all(target_os = "zkvm", target_vendor = "succinct"))'.dependencies]
+# sp1-lib = { version = "4.0.0", default-features = false }
 
 [target.'cfg(all(target_os = "zkvm", target_vendor = "zisk"))'.dependencies]
-ziskos = { git = "https://github.com/0xPolygonHermez/zisk.git", branch = "pre-develop-0.12.0" }
+ziskos = { git = "https://github.com/0xPolygonHermez/zisk.git", tag = "v0.12.0" }
 # Local development
 # ziskos = { path = "../../zisk/ziskos/entrypoint" }
 
@@ -77,6 +79,4 @@ required-features = ["experimental"]
 
 [lints.rust.unexpected_cfgs]
 level = "warn"
-check-cfg = [
-    'cfg(target_vendor, values("succinct"))',
-]
+check-cfg = ['cfg(target_vendor, values("succinct"))']
